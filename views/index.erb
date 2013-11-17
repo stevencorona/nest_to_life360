@@ -1,0 +1,95 @@
+<html>
+
+<head>
+
+  <style type="text/css">
+
+  body {
+    font-family: Helvetica;
+  }
+
+  .nest {
+    width:400px;
+    height: 400px;
+    background-color: black;
+    color: white;
+    border-radius: 250px;
+    float:left;
+    margin: 20px;
+    text-align: center;
+  }
+
+  .nest .device {
+    font-size:10px;
+    font-family: Courier;
+    color: #666;
+  }
+
+  .nest .temp {
+    margin:100px 0 0 0;
+    font-size:128px;
+    letter-spacing: -8px;
+    font-family: Helvetica;
+  }
+
+  .nest .away {
+    margin: 0px;
+    font-size:60px;
+    letter-spacing: -4px;
+    font-family: Helvetica;
+  }
+
+  .members {
+    clear: both;
+  }
+
+  .flags {
+    font-family: "Courier";
+  }
+
+  </style>
+
+</head>
+
+<% DEVICES.each do |d| %>
+  <div class="nest">
+    <% NEST.device_id = d %>
+    <p class="temp"><%= NEST.temp.floor %></p>
+
+    <% if NEST.away %>
+      <p class="away">AWAY</p>
+    <% else %>
+      <p class="away">HOME</p>
+    <% end %>
+    <span class="device">(device id: <%= d %>)</span>
+  </div>
+
+<% end %>
+
+<% @life360 = Life360.new %>
+
+<% @place = @life360.place %>
+
+<% @home = @life360.members_in_place? %>
+
+<table class="members">
+
+  <% @life360.members["members"].each do |m| %>
+  <tr>
+    <td>
+    <%= m["firstName"] %> <%= m["lastName"] %>
+    </td>
+
+    <td class="flags">is_home:<%= @home[m["id"]] %></td>
+  </tr>
+
+  <% end %>
+
+</table>
+
+<h2>Rules</h2>
+
+<p>When ALL MEMBERS leave <b><%= @place["name"] %></b>, set nest <b>AWAY</b></p>
+<p>When ANY MEMBER arrives at <b><%= @place["name"] %></b>, set nest <b>HOME</b></p>
+
+</html>
