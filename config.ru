@@ -5,4 +5,4 @@ Bundler.require
 
 require './app' 
 
-run NestTo360App
+run Nest360

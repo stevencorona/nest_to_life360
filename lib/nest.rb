@@ -16,7 +16,7 @@ module NestThermostat
     end
 
     # Find the devices avaliable
-    def find_devices
+    def devices
       request = HTTParty.get("#{self.transport_url}/v2/mobile/user.#{self.user_id}", headers: self.headers) rescue nil
       result = JSON.parse(request.body) rescue nil
 

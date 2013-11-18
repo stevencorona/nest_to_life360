@@ -51,12 +51,12 @@
 
 </head>
 
-<% DEVICES.each do |d| %>
+<% @nest.devices.each do |d| %>
   <div class="nest">
-    <% NEST.device_id = d %>
-    <p class="temp"><%= NEST.temp.floor %></p>
+    <% @nest.device_id = d %>
+    <p class="temp"><%= @nest.temp.floor %></p>
 
-    <% if NEST.away %>
+    <% if @nest.away %>
       <p class="away">AWAY</p>
     <% else %>
       <p class="away">HOME</p>
@@ -66,15 +66,13 @@
 
 <% end %>
 
-<% @life360 = Life360.new %>
+<% @place = @life360.place(settings.life360_circle, settings.life360_place) %>
 
-<% @place = @life360.place %>
-
-<% @home = @life360.members_in_place? %>
+<% @home = @life360.members_in_place?(settings.life360_circle, settings.life360_place) %>
 
 <table class="members">
 
-  <% @life360.members["members"].each do |m| %>
+  <% @life360.members(settings.life360_circle)["members"].each do |m| %>
   <tr>
     <td>
     <%= m["firstName"] %> <%= m["lastName"] %>
