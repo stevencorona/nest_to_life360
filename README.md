@@ -6,11 +6,11 @@ How to run:
 
 1. Create a `.env` file and fill in the following variables.
 
-    LIFE360_CIRCLE=xxxx
-    LIFE360_PLACE=xxxx
-    LIFE360_TOKEN=xxxx
-    NEST_EMAIL=you@domain.com
-    NEST_PASSWORD=password
+        LIFE360_CIRCLE=xxxx
+        LIFE360_PLACE=xxxx
+        LIFE360_TOKEN=xxxx
+        NEST_EMAIL=you@domain.com
+        NEST_PASSWORD=password
 
 2. Run `bundle install`
 
