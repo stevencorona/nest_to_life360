@@ -1,3 +1,5 @@
+**I don't work at Life360 anymore, and this API is undocument/probably out of date.** You probably don't want to use this.
+
 # Nest to Life360 API Wrapper
 
 This connects your Life360 account to your Nest API.
